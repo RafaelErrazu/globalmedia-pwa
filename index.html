@@ -48,7 +48,7 @@
       justify-content: center;
       box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     }
-    .logo svg { width: 60px; height: 60px; }
+    .logo img { width: 60px; height: 60px; object-fit: contain; }
 
     h1 {
       font-size: 24px;
@@ -94,14 +94,12 @@
     }
 
     .steps {
-      display: none;
       background: rgba(0,0,0,0.20);
       border-radius: 16px;
       padding: 18px 20px;
       margin-bottom: 12px;
       text-align: left;
     }
-    .steps.show { display: block; }
     .steps p {
       font-size: 13px;
       font-weight: 600;
@@ -116,7 +114,6 @@
       line-height: 2;
       opacity: .95;
     }
-    .steps ol li { margin-bottom: 2px; }
 
     .badge {
       display: inline-flex;
@@ -130,47 +127,26 @@
       opacity: .8;
       margin-top: 8px;
     }
-
-    .icon { font-size: 20px; }
   </style>
 </head>
 <body>
 
 <div class="card">
 
-  <!-- Logo -->
   <div class="logo">
-    <img src="HUB Premios.png" style="width:60px;height:60px;object-fit:contain;">
-      <circle cx="18" cy="18" r="17" fill="white" stroke="#1A73E8" stroke-width="1.5"/>
-      <circle cx="18" cy="18" r="11.5" fill="#1A73E8"/>
-      <path d="M7.5 15 Q13 12 18 12 Q23 12 28.5 15" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <path d="M7.5 21 Q13 24 18 24 Q23 24 28.5 21" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <path d="M6.5 18 Q12 16 18 16 Q24 16 29.5 18" stroke="white" stroke-width="1.1" fill="none"/>
-      <path d="M18 6.5 Q14 10 13.5 18 Q13 24 15 29" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <path d="M18 6.5 Q22 10 22.5 18 Q23 24 21 29" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <line x1="18" y1="6.5" x2="18" y2="29.5" stroke="white" stroke-width="1" stroke-linecap="round"/>
-      <circle cx="13.5" cy="13.5" r="1.2" fill="white"/>
-      <circle cx="22.5" cy="13.5" r="1.2" fill="white"/>
-      <circle cx="11.5" cy="19.5" r="1.2" fill="white"/>
-      <circle cx="24.5" cy="19.5" r="1.2" fill="white"/>
-      <circle cx="18" cy="11" r="1.3" fill="white"/>
-      <line x1="13.5" y1="13.5" x2="22.5" y2="13.5" stroke="white" stroke-width=".7" stroke-dasharray="1.5,1.5"/>
-      <line x1="11.5" y1="19.5" x2="24.5" y2="19.5" stroke="white" stroke-width=".7" stroke-dasharray="1.5,1.5"/>
-      <line x1="13.5" y1="13.5" x2="11.5" y2="19.5" stroke="white" stroke-width=".7"/>
-      <line x1="22.5" y1="13.5" x2="24.5" y2="19.5" stroke="white" stroke-width=".7"/>
-    </svg>
+    <img src="HUB Premios.png" alt="GlobalMedia Hub">
   </div>
 
   <h1>GlobalMedia Hub</h1>
   <p class="subtitle">Sistema de gestión de premios 2026</p>
 
-  <!-- Botón instalar (visible solo si el navegador lo soporta automáticamente) -->
+  <!-- Botón instalar automático (solo aparece si el navegador lo soporta) -->
   <button class="btn btn-install hidden" id="btn-install" onclick="instalarPWA()">
     ⬇️ &nbsp;Instalar app
   </button>
 
-  <!-- Instrucciones manuales (siempre visibles como respaldo) -->
-  <div class="steps show" id="steps-manual">
+  <!-- Instrucciones manuales siempre visibles -->
+  <div class="steps">
     <p>📲 Cómo instalar</p>
     <ol>
       <li>Toca el menú <strong>⋮</strong> arriba a la derecha</li>
@@ -195,7 +171,7 @@
   const APP_URL = 'https://script.google.com/macros/s/AKfycbzTjw_kc8H2mKxIClVTHl0LNGEl6Mnu1P_CjkO88pNVT7lM3nbHMbFrI3GY5jv8ACAN/exec';
   let _prompt = null;
 
-  // Si viene desde la app instalada (standalone), redirige directo
+  // Si ya está instalada y se abre en modo standalone, redirige directo a la app
   if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
     window.location.replace(APP_URL);
   }
